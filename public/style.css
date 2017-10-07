@@ -6,8 +6,17 @@
  *    without disabling user zoom.
  */
 
+ @font-face {
+   font-family: "NeuzeitGroT-Bold";
+   src: url("./fonts/NeuzeitGroT-Bold/NeuzeitGroT-Bold.woff") format("woff");
+ }
+
+ @font-face {
+   font-family: "NeuzeitGroT-Regu";
+   src: url("./fonts/NeuzeitGroT-Regu/NeuzeitGroT-Regu.woff") format("woff");
+ }
+
 html {
-  font-family: sans-serif; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -17,6 +26,8 @@ html {
  */
 
 body {
+  background-color: black;
+  color: white;
   margin: 0;
 }
 
@@ -129,16 +140,6 @@ dfn {
 }
 
 /**
- * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox 4+, Safari, and Chrome.
- */
-
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-
-/**
  * Address styling not present in IE 8/9.
  */
 
@@ -220,18 +221,6 @@ hr {
 
 pre {
   overflow: auto;
-}
-
-/**
- * Address odd `em`-unit font size rendering in all browsers.
- */
-
-code,
-kbd,
-pre,
-samp {
-  font-family: monospace, monospace;
-  font-size: 1em;
 }
 
 /* Forms
@@ -432,262 +421,93 @@ th {
 }
 
 html {
-  font-family: Helvetica Neue, Helvetica, sans-serif;
-}
-
-.app {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-image: url(/public/img/3.jpg);
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #333;
-}
-
-.app > h1 {
-  color: white;
-}
-
-.landing {
-  background-color: rgba(220, 220, 220, .7);
-  padding: 15px 30px;
-  border-radius: 5px;
-}
-
-.landing > h1 {
-  color: #B10DC9;
-  font-family: Skia;
-  font-weight: normal;
-}
-
-.landing > input, .landing > form > input {
-  width: 100%;
-  padding: 10px;
-  border-radius: 4px;
-}
-
-.landing > form {
-  width: 100%;
-  min-width: 300px;
-}
-
-.landing > a {
-  margin-top: 15px;
-  padding: 10px 40px;
-  background-color: #333;
-  color: #fafafa;
-  border-color: transparent;
-  display: inline-block;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-.landing > a:hover, .landing > a:focus {
-  background-color: #666;
-}
-
-.landing > a:active {
-  background-color: #fafafa;
-  color: #333;
-  border-color: #333;
-}
-
-.details, .search {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  overflow-y: scroll;
-  background-color: rgba(220, 220, 220, .8);
-  padding: 15px 30px;
-  border-radius: 5px;
-  min-width: 1400px;
-}
-
-.search > div {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: center;
+  font-family: "NeuzeitGroT-Regu", Helvetica, sans-serif;
 }
 
 pre {
   text-align: left;
 }
 
-// .search > div > a {
-//   width: 30%;
-//   height: 0;
-//   padding-bottom: 19.8%;
-//   overflow: hidden;
-//   margin-bottom: 3%;
-//   border: 2px solid #333;
-//   border-radius: 4px;
-//   color: #333;
-//   text-decoration: none;
-// }
-
-// .search > div > a {
-//   width: 100%;
-//   padding-bottom: 70%;
-//   height: 0;
-//   overflow: inherit;
-//   margin-bottom: inherit;;
-//   border: none;
-//   border-radius: inherit;
-// }
-
-// .show-card {
-//   float: left;
-//   margin-right: 2%;
-//   border: 2px solid #333;
-//   border-radius: 4px;
-//   text-align: left;
-//   width: 32%;
-//   height: 0;
-//   padding-bottom: 19.8%;
-//   overflow: hidden;
-//   margin-bottom: 2%;
-// }
-
-// .show-card:nth-child(3n), .search > div > a:nth-child(3n) > .show-card {
-//   margin-right: 0;
-// }
-
-// .show-card > img {
-//   width: 46%;
-//   float: left;
-// }
-
-// .show-card > div{
-//   display: block;
-//   float: right;
-//   width: 52%;
-//   overflow-y: scroll;
-// }
-
-// .show-card > div > h3 {
-//   margin-top: 0;
-//   margin-bottom: 5px;
-// }
-
-// .show-card > div > h4 {
-//   margin-top: 0;
-//   margin-bottom: 5px;
-//   color: #666;
-//   font-size: 13px;
-// }
-
-// .show-card > div > p {
-//   margin: 0;
-//   font-size: 13px;
-}
-
-.search > header + div {
-  margin-top: 25px;
-}
-
 header {
-  z-index: 10;
-  position: fixed;
-  display: flex;
   align-items: center;
+  color: #ffffff;
+  display: flex;
   justify-content: space-between;
-  text-align: center;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  overflow: hidden;
-  background-color: #fafafa;
-  padding: 8px 30px;
+  padding: 24px 0;
+  z-index: 10;
 }
 
-header > h1 {
-  font-family: Skia;
-  font-weight: normal;
-  color: #B10DC9;
+header h1,
+header h2 {
   margin: 0;
 }
 
-header > h1 > a {
-  color: #B10DC9;
+header h1 {
+  font-family: "NeuzeitGroT-Bold";
+  font-size: 48px;
+}
+
+header h2 {
+  color: #606060;
+  font-size: 42px;
+}
+
+header a {
+  color: white;
   text-decoration: none;
 }
 
-header > h2 {
-  font-weight: normal;
-  margin: 0;
-}
-
-header > h2 > a {
-  color: #aaa;
-  text-decoration: none;
-}
-
-.details > div {
+.wrapper {
+  padding: 0 48px;
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  position: relative;
 }
 
-.details > div > iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-header > input {
-  min-width: 250px;
-  max-width: 350px;
-  width: 33%;
-  padding: 4px;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-}
-
-.details > section > img, .details > section > h3 {
-  width: 8%;
-}
-
-.details > section > img.spinner {
-  -webkit-animation: spin 4s infinite linear;
-  -moz-animation: spin 4s infinite linear;
-  animation: spin 4s infinite linear;
-}
-
-@-moz-keyframes spin {
-    from { -moz-transform: rotate(0deg); }
-    to { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0deg); }
-    to { -webkit-transform: rotate(360deg); }
-}
-@keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
-}
-
-.details > section > * {
-  margin: 0 1%;
-}
-
-.details > section {
+.flex {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 25px;
 }
 
-.details > header + section {
-  margin-top: 25px;
+.flex--space-between {
+  justify-content: space-between;
+}
+
+.flex--middle {
+  align-items: center;
+}
+
+p {
+  font-size: 42px;
+}
+
+section {
+  padding-bottom: 240px;
+  padding-top: 240px;
+}
+
+.about p {
+  margin: 0;
+}
+
+footer {
+}
+
+.footer__border-top {
+  border-top: 1px solid #606060;
+  padding: 24px 0;
+}
+
+footer h2,
+footer h3 {
+  margin: 0;
+  font-size: 28px;
+  font-family: "NeuzeitGroT-Regu";
+  font-weight: 100 !important;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
 }
