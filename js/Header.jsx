@@ -16,10 +16,4 @@ const Header = () => (
   </header>
 );
 
-Header.defaultProps = {
-  showSearch: false,
-  handleSearchTermChange: function noop() {},
-  searchTerm: ''
-};
-
 export default Header;

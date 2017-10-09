@@ -433,7 +433,7 @@ header {
   color: #ffffff;
   display: flex;
   justify-content: space-between;
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -484,10 +484,6 @@ p {
 
 section {
   padding-bottom: 240px;
-  padding-top: 240px;
-}
-
-.home {
   padding-top: 160px;
 }
 
