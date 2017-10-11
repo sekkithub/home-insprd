@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './Header';
 import Home from './Home';
 import About from './About';
-// import preload from '../data.json';
+
 import Footer from './Footer';
 
 const FourOhFour = () => <h1>404</h1>;
