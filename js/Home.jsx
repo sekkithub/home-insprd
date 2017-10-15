@@ -1,6 +1,7 @@
 // @flow
 
 import React, { Component } from 'react';
+// import { string } from 'prop-types';
 import Posts from './Posts';
 
 class Home extends Component {
@@ -18,7 +19,7 @@ class Home extends Component {
     this.setState({selectedTag: 'bathroom'}, () => {
       console.log(this.state.selectedTag);
     });
-  }
+  };
 
   render() {
     return (
@@ -28,6 +29,7 @@ class Home extends Component {
           <ul className="tags">
             {this.state.tags
               .map(tag => (
+                // <li role="presentation" key={tag} onClick={(e) => this.handleClick(tag, e)}>{tag}</li>
                 <li role="presentation" key={tag} onClick={this.handleClick}>{tag}</li>
               )
             )}
@@ -39,5 +41,9 @@ class Home extends Component {
     )
   }
 }
+
+// Home.propTypes = {
+//   tag: string.isRequired
+// };
 
 export default Home;
