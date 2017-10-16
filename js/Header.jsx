@@ -1,7 +1,18 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+const StyledLink = styled(Link)`
+  color: #606060;
+  text-decoration: none;
+  transition: all .2s;
+
+  &:hover {
+    color: #ffffff;
+  }
+`;
 
 const Header = () => (
   <header>
@@ -10,7 +21,7 @@ const Header = () => (
         <Link to="/">Home Insprd</Link>
       </h1>
       <h2>
-        <Link to="/about">About</Link>
+        <StyledLink to="/about">About</StyledLink>
       </h2>
     </div>
   </header>

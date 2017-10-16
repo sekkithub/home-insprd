@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const apiKey = 'knXlIfwA1H5FNsYFz28ZArIt5UMWSoNVu3ky7Uk0Y50hPnw0pY';
 const blogApi = 'http://api.tumblr.com/v2/blog/homeinsprd.tumblr.com';
-const loadingPostsAtOnce = 20;
+const loadingPostsAtOnce = 2;
 
 const TagsHeading = styled.h2`
   font-size: 42px;
@@ -14,6 +14,56 @@ const TagsHeading = styled.h2`
   margin-bottom: 48px;
   margin-top: 0;
   text-align: center;
+`;
+
+const TagList = styled.ul`
+  margin-bottom: 96px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  list-style: none;
+  padding-left: 0;
+  text-align: center;
+`;
+
+const TagListItem = styled.li`
+  color: #606060;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 28px;
+  margin: 0 24px;
+  text-transform: capitalize;
+  transition: color .2s;
+
+  &:hover {
+    color: #ffffff;
+  }
+
+  &.active {
+    color: #ffffff;
+    pointer-events: none;
+  }
+`;
+
+const LoadMoreButton = styled.button`
+  background-color: transparent;
+  border: 1px solid #ffffff;
+  font-size: 28px;
+  padding: 18px;
+  user-select: none;
+  outline: none;
+  transition: all .3s;
+  width: 100%;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+`;
+
+const Posts = styled.ul`
+  padding-left: 0;
+  margin-bottom: 120px;
 `;
 
 class Home extends Component {
@@ -61,24 +111,24 @@ class Home extends Component {
       <section className="home">
         <div className="wrapper">
           <TagsHeading>Popular Tags</TagsHeading>
-          <ul className="tags">
+          <TagList className="tags">
             {this.state.tags
               .map(tag => (
-                <li role="presentation" key={tag} onClick={() => this.runFilter(tag)}>{tag}</li>
+                <TagListItem role="presentation" key={tag} onClick={() => this.runFilter(tag)}>{tag}</TagListItem>
               )
             )}
-          </ul>
+          </TagList>
 
-          <ul className="posts">
+          <Posts className="posts">
             {this.state.posts
               .filter(post => `${post.tags}`.indexOf(post.tags) >= 0)
               .map(post => (
                 <img src={post.photos[0].original_size.url} key={post.id} alt={post.id} />
               )
             )}
-          </ul>
+          </Posts>
 
-          <button onClick={this.loadMore}>Load more</button>
+          <LoadMoreButton onClick={this.loadMore}>Load more</LoadMoreButton>
         </div>
       </section>
     )
