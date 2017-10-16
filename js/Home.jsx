@@ -1,11 +1,20 @@
 // @flow
 
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 
 const apiKey = 'knXlIfwA1H5FNsYFz28ZArIt5UMWSoNVu3ky7Uk0Y50hPnw0pY';
 const blogApi = 'http://api.tumblr.com/v2/blog/homeinsprd.tumblr.com';
-const loadingPostsAtOnce = 2;
+const loadingPostsAtOnce = 20;
+
+const TagsHeading = styled.h2`
+  font-size: 42px;
+  font-weight: 100;
+  margin-bottom: 48px;
+  margin-top: 0;
+  text-align: center;
+`;
 
 class Home extends Component {
   state = {
@@ -51,7 +60,7 @@ class Home extends Component {
     return (
       <section className="home">
         <div className="wrapper">
-          <h2 className="heading">Popular Tags</h2>
+          <TagsHeading>Popular Tags</TagsHeading>
           <ul className="tags">
             {this.state.tags
               .map(tag => (
