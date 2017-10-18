@@ -461,11 +461,6 @@ header h2 {
   font-size: 42px;
 }
 
-.wrapper {
-  padding: 0 48px;
-  width: 100%;
-}
-
 .flex {
   display: flex;
 }

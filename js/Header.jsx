@@ -14,16 +14,25 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const Wrapper = styled.div`
+  padding: 0 24px;
+  width: 100%;
+
+  @media (min-width: 780px) {
+    padding: 0 48px;
+  }
+`;
+
 const Header = () => (
   <header>
-    <div className="wrapper  flex  flex--space-between  flex--middle">
+    <Wrapper className="flex  flex--space-between  flex--middle">
       <h1>
         <Link to="/">Home Insprd</Link>
       </h1>
       <h2>
         <StyledLink to="/about">About</StyledLink>
       </h2>
-    </div>
+    </Wrapper>
   </header>
 );
 

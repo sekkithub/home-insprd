@@ -74,11 +74,24 @@ const Post = styled.div`
   line-height: 0;
   display: inline-block;
   vertical-align: bottom;
+
+  @media (max-width: 780px) {
+    margin: 20px 0;
+  }
 `;
 
 const PostImage = styled.img`
-  max-height: 700px !important;
+  max-height: 700px;
   max-width: 100%;
+`;
+
+const Wrapper = styled.div`
+  padding: 0 24px;
+  width: 100%;
+
+  @media (min-width: 780px) {
+    padding: 0 48px;
+  }
 `;
 
 class Home extends Component {
@@ -126,7 +139,7 @@ class Home extends Component {
   render() {
     return (
       <section className="home">
-        <div className="wrapper">
+        <Wrapper>
           <TagsHeading>Popular Tags</TagsHeading>
           <TagList className="tags">
             <TagListItem role="presentation" key='all' className={this.state.isToggleOn ? 'on' : ''} onClick={() => this.runFilter('')}>All</TagListItem>
@@ -149,7 +162,7 @@ class Home extends Component {
           </Posts>
 
           <LoadMoreButton onClick={this.loadMore}>Load more</LoadMoreButton>
-        </div>
+        </Wrapper>
       </section>
     )
   }
