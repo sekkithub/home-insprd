@@ -78,6 +78,7 @@ const Post = styled.div`
 
 const PostImage = styled.img`
   max-height: 700px !important;
+  max-width: 100%;
 `;
 
 class Home extends Component {
