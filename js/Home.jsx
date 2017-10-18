@@ -4,10 +4,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const apiKey = 'knXlIfwA1H5FNsYFz28ZArIt5UMWSoNVu3ky7Uk0Y50hPnw0pY';
-const blogApi = 'http://api.tumblr.com/v2/blog/homeinsprd.tumblr.com';
-const loadingPostsAtOnce = 20;
-
 const TagsHeading = styled.h2`
   font-size: 42px;
   font-weight: 100;
@@ -94,6 +90,10 @@ const Wrapper = styled.div`
   }
 `;
 
+const apiKey = 'knXlIfwA1H5FNsYFz28ZArIt5UMWSoNVu3ky7Uk0Y50hPnw0pY';
+const blogApi = 'http://api.tumblr.com/v2/blog/homeinsprd.tumblr.com';
+const loadingPostsAtOnce = 2;
+
 class Home extends Component {
   state = {
     selectedTag: '',
@@ -107,14 +107,20 @@ class Home extends Component {
     firstLoadingEntry: 0,
     isToggleOn: true,
     active: 0,
+    totalPosts: 0,
+    loadedPosts: loadingPostsAtOnce,
   }
 
   componentDidMount() {
-    const firstLoadingEntry = this.state.firstLoadingEntry;
-    axios.get(`${blogApi}/posts?&offset=${firstLoadingEntry}&limit=${loadingPostsAtOnce}&api_key=${apiKey}&tag=${this.state.selectedTag}`)
+    axios.get(`${blogApi}/posts?&limit=${loadingPostsAtOnce}&api_key=${apiKey}&tag=${this.state.selectedTag}`)
       .then((response) => {
+        const totalPosts = response.data.response.total_posts;
         const posts = response.data.response.posts.map(obj => obj);
-        this.setState({ posts });
+        this.setState({
+          posts,
+          totalPosts,
+          loadedPosts: loadingPostsAtOnce,
+        });
     });
   }
 
@@ -122,8 +128,13 @@ class Home extends Component {
     this.setState({ posts: [], firstLoadingEntry: 0, selectedTag: tag }, () => {
       axios.get(`${blogApi}/posts?&offset=${this.state.firstLoadingEntry}&limit=${loadingPostsAtOnce}&api_key=${apiKey}&tag=${this.state.selectedTag}`)
         .then((response) => {
+          const totalPosts = response.data.response.total_posts;
           const posts = response.data.response.posts.map(obj => obj);
-          this.setState({ posts });
+          this.setState({
+            posts,
+            totalPosts,
+            loadedPosts: loadingPostsAtOnce
+          });
       });
     });
   };
@@ -131,8 +142,13 @@ class Home extends Component {
   loadMore = () => {
     axios.get(`${blogApi}/posts?&offset=${this.state.firstLoadingEntry += loadingPostsAtOnce}&limit=${loadingPostsAtOnce}&api_key=${apiKey}&tag=${this.state.selectedTag}`)
       .then((response) => {
+        const totalPosts = response.data.response.total_posts;
         const posts = response.data.response.posts.map(obj => obj);
-        this.setState({posts: this.state.posts.concat(posts)});
+        this.setState({
+          posts: this.state.posts.concat(posts),
+          totalPosts,
+          loadedPosts: this.state.firstLoadingEntry += loadingPostsAtOnce
+        });
     });
   }
 
@@ -154,14 +170,16 @@ class Home extends Component {
             {this.state.posts
               .filter(post => `${post.tags}`.indexOf(post.tags) >= 0)
               .map(post => (
-                <Post className="post">
-                  <PostImage src={post.photos[0].original_size.url} className="PostImage" key={post.id} alt={post.id} />
+                <Post className="post" key={post.id}>
+                  <PostImage src={post.photos[0].original_size.url} className="PostImage" alt={post.id} />
                 </Post>
               )
             )}
           </Posts>
 
-          <LoadMoreButton onClick={this.loadMore}>Load more</LoadMoreButton>
+          {this.state.totalPosts > this.state.loadedPosts &&
+            <LoadMoreButton onClick={this.loadMore}>Load more</LoadMoreButton>
+          }
         </Wrapper>
       </section>
     )

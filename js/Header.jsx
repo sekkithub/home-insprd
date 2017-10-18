@@ -4,6 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+// $FlowFixMe
 const StyledLink = styled(Link)`
   color: #606060;
   text-decoration: none;

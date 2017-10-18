@@ -1,10 +1,20 @@
 // @flow
 
 import React from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  padding: 0 24px;
+  width: 100%;
+
+  @media (min-width: 780px) {
+    padding: 0 48px;
+  }
+`;
 
 const About = () => (
   <section className="about">
-    <div className="wrapper">
+    <Wrapper>
       <p>
         We are Home Insprd.<br />
         <br />
@@ -20,7 +30,7 @@ const About = () => (
         <br />
         To break with the mundane and pursue the extraordinary.
       </p>
-    </div>
+    </Wrapper>
   </section>
 );
 
