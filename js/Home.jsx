@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const apiKey = 'knXlIfwA1H5FNsYFz28ZArIt5UMWSoNVu3ky7Uk0Y50hPnw0pY';
 const blogApi = 'http://api.tumblr.com/v2/blog/homeinsprd.tumblr.com';
-const loadingPostsAtOnce = 2;
+const loadingPostsAtOnce = 20;
 
 const TagsHeading = styled.h2`
   font-size: 42px;
@@ -34,6 +34,7 @@ const TagListItem = styled.li`
   margin: 0 24px;
   text-transform: capitalize;
   transition: color .2s;
+  user-select: none;
 
   &:hover {
     color: #ffffff;
@@ -64,6 +65,19 @@ const LoadMoreButton = styled.button`
 const Posts = styled.ul`
   padding-left: 0;
   margin-bottom: 120px;
+  text-align: center;
+`;
+
+const Post = styled.div`
+  margin: 20px;
+  position: relative;
+  line-height: 0;
+  display: inline-block;
+  vertical-align: bottom;
+`;
+
+const PostImage = styled.img`
+  max-height: 700px !important;
 `;
 
 class Home extends Component {
@@ -77,6 +91,8 @@ class Home extends Component {
     ],
     posts: [],
     firstLoadingEntry: 0,
+    isToggleOn: true,
+    active: 0,
   }
 
   componentDidMount() {
@@ -112,9 +128,10 @@ class Home extends Component {
         <div className="wrapper">
           <TagsHeading>Popular Tags</TagsHeading>
           <TagList className="tags">
+            <TagListItem role="presentation" key='all' className={this.state.isToggleOn ? 'on' : ''} onClick={() => this.runFilter('')}>All</TagListItem>
             {this.state.tags
               .map(tag => (
-                <TagListItem role="presentation" key={tag} onClick={() => this.runFilter(tag)}>{tag}</TagListItem>
+                <TagListItem role="presentation" key={tag} className={this.state.isToggleOn ? 'on' : ''} onClick={() => this.runFilter(tag)}>{tag}</TagListItem>
               )
             )}
           </TagList>
@@ -123,7 +140,9 @@ class Home extends Component {
             {this.state.posts
               .filter(post => `${post.tags}`.indexOf(post.tags) >= 0)
               .map(post => (
-                <img src={post.photos[0].original_size.url} key={post.id} alt={post.id} />
+                <Post className="post">
+                  <PostImage src={post.photos[0].original_size.url} className="PostImage" key={post.id} alt={post.id} />
+                </Post>
               )
             )}
           </Posts>
