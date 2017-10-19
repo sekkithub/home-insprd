@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import '../data.json';
 
 const TagsHeading = styled.h2`
   font-size: 42px;
@@ -17,6 +18,7 @@ const TagList = styled.ul`
   margin-left: auto;
   margin-right: auto;
   margin-top: 0;
+  max-width: 680px;
   list-style: none;
   padding-left: 0;
   text-align: center;
@@ -28,6 +30,7 @@ const TagListItem = styled.li`
   display: inline-block;
   font-size: 28px;
   margin: 0 24px;
+  padding-bottom: 12px;
   text-transform: capitalize;
   transition: color .2s;
   user-select: none;
@@ -98,10 +101,17 @@ class Home extends Component {
   state = {
     selectedTag: '',
     tags: [
-      'mirror',
+      'Bathroom',
+      'Dining',
+      'Flooring',
+      'Kitchen',
+      'Living room',
       'plant',
-      'bathroom',
-      'toilet',
+      'Sofa',
+      'Table',
+      'Tile',
+      'Toilet',
+      'Window',
     ],
     posts: [],
     firstLoadingEntry: 0,
