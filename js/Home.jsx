@@ -92,7 +92,7 @@ const Wrapper = styled.div`
 
 const apiKey = 'knXlIfwA1H5FNsYFz28ZArIt5UMWSoNVu3ky7Uk0Y50hPnw0pY';
 const blogApi = 'http://api.tumblr.com/v2/blog/homeinsprd.tumblr.com';
-const loadingPostsAtOnce = 2;
+const loadingPostsAtOnce = 20;
 
 class Home extends Component {
   state = {

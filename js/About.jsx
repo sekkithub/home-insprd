@@ -12,24 +12,41 @@ const Wrapper = styled.div`
   }
 `;
 
+const P = styled.p`
+  max-width: 980px;
+`
+
+const A = styled.a`
+  border-bottom: 2px solid white;
+  color: inherit;
+  text-decoration: none;
+  transition: all .2s;
+
+  &:hover {
+    border-bottom-color: transparent;
+  }
+`
+
 const About = () => (
   <section className="about">
     <Wrapper>
-      <p>
+      <P>
         We are Home Insprd.<br />
         <br />
-        An independent, home products collection.<br />
+        This is a photo collection of layout, material, decoration, style, anything about home.
+        This is for everyone who loves modern design.<br />
         <br />
-        We design products, environments and communications that transform brands, drive business and improve people’s lives.t<br />
+        To get an inspiration.<br />
         <br />
-        We do it by putting imagination at the center of everything we do.<br />
+        To touch our imagination.<br />
         <br />
-        To craft bold, unforgettable worlds.<br />
+        To love what our ancestors have made.<br />
         <br />
-        To weave the pragmatic with the poetic.<br />
         <br />
-        To break with the mundane and pursue the extraordinary.
-      </p>
+        <br />
+        <br />
+        This website is developed by <A href="http://sekkithub.com" target="_blank" rel="noopener noreferrer">Masato</A> with React
+      </P>
     </Wrapper>
   </section>
 );
